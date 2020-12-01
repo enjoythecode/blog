@@ -267,9 +267,10 @@ render_post_list() {
 	urls="$1"
 	base_url="$2"
 
+	echo '<html>'
 	echo '<h1>My Posts</h1>'
 	echo "$urls" |
-	sed -E 's#^(.*)$#<a href="'"$base_url"'\1"></a>#'
+	sed -E 's#^(.*)$#<a href="'"$base_url"'\1">\1</a><br>#'
 }
 
 main "$@"
