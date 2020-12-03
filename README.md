@@ -18,7 +18,9 @@ The two scripts under `bin/`:
 
 ## Generate Static Files
 
-```bin/ssg5 src dst 'Sinan' 'https://blog.enjoythecode.com/'```
+`cd bin` 
+```./ssg5 ../src ../dst 'Sinan' 'https://blog.enjoythecode.com/'```
+
 
 That's it, all the files should be under `dst/`, ready to serve. I use Netlify because it is simple.
 
