@@ -49,6 +49,9 @@ main() {
 	test -f "$f_file" && FOOTER=$(cat "$f_file") && export FOOTER
 	test -f "$h_file" && HEADER=$(cat "$h_file") && export HEADER
 
+	# latest posts
+	python3 bin/latest.py > src/all_posts.html
+
 	list_dirs "$src" |
 	(cd "$src" && cpio -pdu "$dst")
 
@@ -100,7 +103,6 @@ main() {
 
 	test -n "$urls" &&
 	render_sitemap "$urls" "$base_url" "$date" > "$dst/sitemap.xml"
-	render_post_list "$urls" "$base_url" > "$dst/post_list.html"
 
 	print_status 'url' 'urls' "$urls" >&2
 	echo >&2
@@ -261,16 +263,6 @@ render_sitemap() {
 	sed -E 's#^(.*)$#<url><loc>'"$base_url"'/\1</loc><lastmod>'\
 "$date"'</lastmod><priority>1.0</priority></url>#'
 	echo '</urlset>'
-}
-
-render_post_list() {
-	urls="$1"
-	base_url="$2"
-
-	echo '<html>'
-	echo '<h1>My Posts</h1>'
-	echo "$urls" |
-	sed -E 's#^(.*)$#<a href="\1">\1</a><br>#'
 }
 
 main "$@"

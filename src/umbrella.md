@@ -9,5 +9,3 @@ Don't open the food delivery app when you get a little hungry. Your brain confus
 Don't rush to online shopping when you get an urge to purchase some item. Give the decision a few days. Most of these urges are irrational and will go away in a few days. You'll then have more money for stuff that will actually nourish your needs.
 
 Recognize when getting a little wet can be fun.
-
--- Sinan
