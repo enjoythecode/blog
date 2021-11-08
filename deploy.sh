@@ -5,7 +5,7 @@ main (){
 md_to_html() {
     while read -r f
         do
-        pandoc --standalone --template src/template.html "src/$f.md" > "dst/$f.html"
+        pandoc --standalone --template template.html "src/$f.md" > "dst/$f.html"
     done
 }
 
