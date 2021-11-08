@@ -2,18 +2,18 @@
 
 There are so many static blog generators out there, each with their own dependencies, and advertising different features.
 
-After being frustrated with some of these tools, I decided I wanted to have my own solution using simple shell scripting and `pandoc` as the workhorse. I'll document my steps along the way, so that you can retrace my steps and intuitively understand how the thing works.
+After being frustrated with trying to set up some of these tools, I decided I wanted to build my own solution using simple shell scripting. I'll document my steps along the way, so that you can retrace my steps and intuitively understand how the thing works.
+
+## What Will The SBG do?
+My use case is super simple; there should be a command that takes in a source and a destination directory. It should compile all Markdown (`.md`) files in that source directory, wrap them in some basic style and put statically generated HTML files under the destination directory.
+
+As an extension, I'll also have the tool generate a landing page with a list of all the blog posts.
 
 ## Requirements
 `pandoc`
 
 ## Credits
 [This blog post has been the primary source for the work described below.](https://www.arthurkoziel.com/convert-md-to-html-pandoc/) 
-
-## What Will The SBG do?
-My use case is super simple; there should be a command that takes in a source and a destination directory. It should compile all Markdown (`.md`) files in that source directory, wrap them in some basic style and put statically generated HTML files under the destination directory.
-
-As an extension, I'll also have the tool generate a landing page with a list of all the blog posts.
 
 ## First Steps with Pandoc
 Pandoc infers input file format from the extension, and by default converts to HTML, so our initial command will be very simple. We can invoke pandoc on the source markdown of this like so;
@@ -70,3 +70,9 @@ Yay, the white background no longer burns our eyes, and we also have a nice, non
 A quick tangent: this template file will provide us with flexibility as we can put placeholders for other variables in the template, and define those on a post-by-post basis by defining those variables in the frontmatter of our markdown source files.
 
 ## Going Beyond Single Files
+
+So, we are able to make individual `.md` files into blog pages. How do we extend this so that all posts in a given directory are converted to HTML pages in another directory?
+
+sed -e 's/src\/\(.*\).md/\1/'
+
+find src -name "*.md" | sed -e 's/src\/\(.*\).md/\1/' | xargs -n1 -I% pandoc --standalone --template src/template.html "src/%.md" > "dst/%.html"
