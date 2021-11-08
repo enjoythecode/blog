@@ -10,6 +10,7 @@ The static files are hosted by Netlify for free.
 I intend to keep this as simple as possible. Here are a few things that I want to add when I have the time:
 - List of latest posts in index.html
 - sitemap.xml
+- Fix: `code` blocks are weirdly indented in HTML.
 
 # Building the Site
 ## Dependencies
