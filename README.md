@@ -1,26 +1,21 @@
-# My Blog
+# Sinan's Blog
 Hi there, you've stumbled upon my blog. You can visit it at [blog.enjoythecode.com](https://blog.enjoythecode.com). I share some thoughts for people who enjoy reading what I write.
 
 # Tech
-Static site generator by [Roman Zolotarev](blog.enjoythecode.com). I've only modified it a tiny bit to generate a rudimentary list of posts.
+Static blog generator converts written by me. I used to use a similar script by Roman Zolotarev, but I figured it'd be fun to [write mine, so I did](https://blog.enjoythecode.com/buildablog.html)
+
+The static files are hosted by Netlify for free.
 
 # Tasks
 I intend to keep this as simple as possible. Here are a few things that I want to add when I have the time:
-- Simple minimalistic styling with CSS
 - List of latest posts in index.html
-- RSS feed
+- sitemap.xml
 
-# Development
-## Requirements
-The two scripts under `bin/`:
-
-```chmod +x bin/ssg5 bin/Markdown.pl```
+# Building the Site
+## Dependencies
+`pandoc`
 
 ## Generate Static Files
+`deploy.sh`
 
-`cd bin` 
-```./ssg5 ../src ../dst 'Sinan' 'https://blog.enjoythecode.com/'```
-
-
-That's it, all the files should be under `dst/`, ready to serve. I use Netlify because it is simple.
-
+That's it, all the HTML should be under `dst/`, ready to serve.

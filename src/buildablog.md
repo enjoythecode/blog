@@ -73,6 +73,29 @@ A quick tangent: this template file will provide us with flexibility as we can p
 
 So, we are able to make individual `.md` files into blog pages. How do we extend this so that all posts in a given directory are converted to HTML pages in another directory?
 
-sed -e 's/src\/\(.*\).md/\1/'
+First, let's find all `.md` files under `src/` using `find`:
 
-find src -name "*.md" | sed -e 's/src\/\(.*\).md/\1/' | xargs -n1 -I% pandoc --standalone --template src/template.html "src/%.md" > "dst/%.html"
+`find src -name "*.md"`
+
+This will give us the whole path including `src`, however, we want just the filename without the extension so that we can easily adapt our existing pandoc comment. I use `sed` to grab the part we are interested in;
+
+`find src -name "*.md" | sed -e 's/src\/\(.*\).md/\1/`
+
+Last thing will be to pipe all these into the `pandoc` command above. I will now graduate up to an `.sh` file to keep the code manageable, while still keeping the amount of code minimal.
+
+```
+main (){
+    find src -name "*.md" | sed -e 's/src\/\(.*\).md/\1/' | md_to_html
+}
+
+md_to_html() {
+    while read -r f
+        do
+        pandoc --standalone --template src/template.html "src/$f.md" > "dst/$f.html"
+    done
+}
+
+main "$@"
+```
+
+Saving this to a file (I used `deploy.sh`), and running it in the command line "compiles" all our blog posts from Markdown to HTML, just like we wanted! 
