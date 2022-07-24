@@ -17,6 +17,6 @@ I intend to keep this as simple as possible. Here are a few things that I want t
 `pandoc`
 
 ## Generate Static Files
-`deploy.sh`
+Run `./deploy.sh`
 
 That's it, all the HTML should be under `dst/`, ready to serve.
