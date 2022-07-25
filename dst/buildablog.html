@@ -75,14 +75,14 @@
             <pre><code>main (){
                 find src -name &quot;*.md&quot; | sed -e &#39;s/src\/\(.*\).md/\1/&#39; | md_to_html
             }
-            
+
             md_to_html() {
                 while read -r f
                     do
                     pandoc --standalone --template src/template.html &quot;src/$f.md&quot; &gt; &quot;dst/$f.html&quot;
                 done
             }
-            
+
             main &quot;$@&quot;</code></pre>
             <p>Saving this to a file (I used <code>deploy.sh</code>), and running it in the command line “compiles” all our blog posts from Markdown to HTML, just like we wanted!</p>
         </div>
